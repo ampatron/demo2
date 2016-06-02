@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Demo 2</string>
+    <string name="label_select_contacts">Select contacts</string>
+</resources>

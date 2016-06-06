@@ -1,5 +1,6 @@
 package com.tdmr.demo.two.models;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Parcel;
@@ -79,11 +80,12 @@ public class Contact implements Parcelable {
         return ((o instanceof Contact) && ((Contact) o).id == id);
     }
 
-    public static Contact fromCursor(Cursor cursor) {
+    public static Contact fromCursor(Cursor cursor, Context context) {
         Contact contact = new Contact();
         contact.id = cursor.getLong(cursor.getColumnIndexOrThrow(ContactsContract.Contacts._ID));
         contact.displayName = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
         contact.photoUri = DbUtils.getPhotoUri(cursor.getLong(cursor.getColumnIndexOrThrow(ContactsContract.Contacts._ID)));
+        contact.phoneNumber = DbUtils.retrieveContactNumber(context, cursor.getLong(cursor.getColumnIndexOrThrow(ContactsContract.Contacts._ID)));
 
         return contact;
     }

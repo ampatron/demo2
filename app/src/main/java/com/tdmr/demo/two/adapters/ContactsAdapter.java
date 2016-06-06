@@ -56,7 +56,7 @@ public class ContactsAdapter extends CursorAdapter implements StickyListHeadersA
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         ViewHolder holder = (ViewHolder) view.getTag();
-        Contact contact = Contact.fromCursor(cursor);
+        Contact contact = Contact.fromCursor(cursor, context);
         holder.binding.setContact(contact);
         holder.binding.checkbox.setChecked(selectedIds.contains(contact));
     }
@@ -66,7 +66,7 @@ public class ContactsAdapter extends CursorAdapter implements StickyListHeadersA
         //converts cursor to contact object for easier referencing
         Cursor c = (Cursor) super.getItem(position);
         if (c != null)
-            return Contact.fromCursor(c);
+            return Contact.fromCursor(c, mContext);
         return null;
     }
 

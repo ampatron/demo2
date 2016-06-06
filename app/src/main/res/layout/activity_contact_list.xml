@@ -1,12 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.tdmr.demo.two.ContactListActivity">
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="To: "
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:gravity="center_vertical">
+
+                <com.tdmr.demo.two.views.BoundedRecyclerViewLayout
+                    android:id="@+id/recycler"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/badge"
+                    android:orientation="horizontal"
+                    android:scrollbars="horizontal"
+                    app:bounded_width="0.66"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:listitem="@layout/item_contact" />
+
+                <EditText
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="Search..."
+                    android:paddingLeft="4dp"
+                    android:paddingStart="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+            android:id="@+id/list"
+            style="@style/Widget.AppCompat.ListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</layout>
